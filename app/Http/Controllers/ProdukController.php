@@ -17,27 +17,25 @@ class ProdukController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Produk::with('kategori','supplier')->limit(10);
+            $data = Produk::with('kategori', 'supplier')->limit(5);
             return DataTables::of($data)
-                    ->addIndexColumn()
-                    ->editColumn('kategori.nama', function ($q){
-                        $kategori = !empty($q->kategori->nama) ? $q->kategori->nama : '-';
-                        return $kategori;
-                        // return $q->kategori->nama;
-                    })
-                    ->editColumn('supplier.nama', function ($q){
-                        $supplier = !empty($q->supplier->nama) ? $q->supplier->nama : '-';
-                        return $supplier;
-                        // return $q->supplier->nama;
-                    })
-                    ->addColumn('action', function($row){
-                        $actionBtn = '
-                            <a href="javascript:void(0)" data-toggle="tooltip" id="btn-edit" data-id="'.$row->id.'" class="edit btn btn-success btn-md">Edit</a> 
-                            <a href="javascript:void(0)" data-toggle="tooltip" id="btn-delete" data-id="'.$row->id.'" class="delete btn btn-danger btn-md">Delete</a>';
-                        return $actionBtn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+                ->addIndexColumn()
+                ->editColumn('kategori.nama', function ($q) {
+                    $kategori = !empty($q->kategori->nama) ? $q->kategori->nama : '-';
+                    return $kategori;
+                })
+                ->editColumn('supplier.nama', function ($q) {
+                    $supplier = !empty($q->supplier->nama) ? $q->supplier->nama : '-';
+                    return $supplier;
+                })
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '
+                            <a href="javascript:void(0)" data-toggle="tooltip" id="btn-edit" data-id="' . $row->id . '" class="edit btn btn-success btn-md">Edit</a>
+                            <a href="javascript:void(0)" data-toggle="tooltip" id="btn-delete" data-id="' . $row->id . '" class="delete btn btn-danger btn-md">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
         return view('admin.produk');
     }
@@ -55,23 +53,32 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        Produk::updateOrCreate([
-            'id' => $request->id
-        ],
-        [
-            'kode_produk' => $request->kode_produk,
-            'nama_produk' => $request->nama_produk,
-            'deskripsi' =>$request->deskripsi,
-            'satuan' =>$request->satuan,
-            'stok' =>$request->stok,
-            'harga_beli' =>$request->harga_beli,
-            'harga_jual' =>$request->harga_jual,
-            'harga_jual' =>$request->harga_jual,
-            'kategori_id' =>$request->kategori_id,
-            'supplier_id' =>$request->supplier_id,
-        ]);
+        $harga_beli = $request->harga_beli;
+        $hargaBeli = preg_replace('/[.]/', '', $harga_beli);
+        $harga_jual = $request->harga_jual;
+        $hargaJual = preg_replace('/[.]/', '', $harga_jual);
+        $data = Produk::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+                'kode_produk' => $request->kode_produk,
+                'nama_produk' => $request->nama_produk,
+                'deskripsi' => $request->deskripsi,
+                'satuan' => $request->satuan,
+                'stok' => $request->stok,
+                'harga_beli' => $hargaBeli,
+                'harga_jual' => $hargaJual,
+                'kategori_id' => $request->kategori_id,
+                'supplier_id' => $request->supplier_id,
+            ]
+        );
 
-        return response()->json(['success' => 'Kategori berhasil disimpan']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Produk berhasil disimpan',
+            'data' => $data
+        ]);
     }
 
     /**
@@ -82,7 +89,7 @@ class ProdukController extends Controller
         $data = Produk::with(['kategori', 'supplier'])->findOrFail($produk->id);
         return response()->json([
             'success' => true,
-            'message' => 'Detail Data Supplier',
+            'message' => 'Detail Data Produk',
             'data' => $data,
         ]);
     }
@@ -112,26 +119,26 @@ class ProdukController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Supplier berhasil dihapus',
+            'message' => 'Produk berhasil dihapus',
             'data' => $data
         ]);
     }
 
     public function kategori()
     {
-        $data = Kategori::where('nama', 'LIKE', '%'.request('q').'%')->paginate(5);
+        $data = Kategori::where('nama', 'LIKE', '%' . request('q') . '%')->paginate(5);
 
         return response()->json($data);
     }
 
     public function supplier()
     {
-        $data = Supplier::where('nama', 'LIKE', '%'.request('q').'%')->paginate(5);
+        $data = Supplier::where('nama', 'LIKE', '%' . request('q') . '%')->paginate(5);
 
         return response()->json($data);
     }
 
-    public function kodeProduk() 
+    public function kodeProduk()
     {
         $maxNo = DB::table('produks')->max('kode_produk');
         $urutan = (int) substr($maxNo, 2, 3);
@@ -145,5 +152,4 @@ class ProdukController extends Controller
             'data' => $data,
         ]);
     }
-
 }

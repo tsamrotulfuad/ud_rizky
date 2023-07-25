@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('satuan');
             $table->integer('stok');
-            $table->integer('harga_beli');
-            $table->integer('harga_jual');
+            $table->string('harga_beli');
+            $table->string('harga_jual');
             $table->unsignedBigInteger('kategori_id')->nullable();
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->timestamps();

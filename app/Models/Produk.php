@@ -18,17 +18,17 @@ class Produk extends Model
         'stok',
         'harga_beli',
         'harga_jual',
-        'harga_jual',
         'kategori_id',
         'supplier_id',
     ];
 
-    public function kategori() : BelongsTo {
+    public function kategori(): BelongsTo
+    {
         return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
     }
 
-    public function supplier() : BelongsTo {
+    public function supplier(): BelongsTo
+    {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
-
 }
