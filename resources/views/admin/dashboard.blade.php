@@ -7,35 +7,33 @@
         <div class="col">
             <div class="card h-100 bg-primary">
                 <div class="card-body text-white">
-                    <h2 class="card-title">Rp. </h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
+                    <h2 class="card-title">Rp. </h2>
+                    <h6 class="card-text mt-3">PENJUALAN HARI INI</h6>
+                    {{-- <p class="card-text">PENJUALAN HARI INI</p> --}}
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card h-100 bg-danger">
                 <div class="card-body text-white">
-                    <h2 class="card-title">Rp.</h5>
-                        <p class="card-text">This is a short card.</p>
+                    <h2 class="card-title">Rp.</h2>
+                    <h6 class="card-text mt-3">PENJUALAN MINGGU INI</h6>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card h-100 bg-warning">
                 <div class="card-body text-white">
-                    <h2 class="card-title">Rp.</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content.</p>
+                    <h2 class="card-title">Rp.</h2>
+                    <h6 class="card-text mt-3">PENJUALAN BULAN INI</h6>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card h-100 bg-success">
                 <div class="card-body text-white">
-                    <h2 class="card-title">Rp.</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
+                    <h2 class="card-title">Rp.</h2>
+                    <h6 class="card-text mt-3">PENJUALAN TOTAL</h6>
                 </div>
             </div>
         </div>
@@ -85,3 +83,16 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        $(function() {
+            // Pass Header Token
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+    </script>
+@endpush
