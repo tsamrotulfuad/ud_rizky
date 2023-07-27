@@ -41,14 +41,14 @@
 
     <p class="h3 mt-5 mb-3">List data</p>
 
-    <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4 mb-5">
         <div class="col">
             <div class="card h-100 bg-primary">
                 <div class="card-body text-white">
                     <h1 class="card-title">{{ $total_kategori }}</h1>
                     <h5 class="card-text">Kategori</h5>
-                    <p class="card-text"><a href="{{ route('kategori.index') }}" class="text-white"
-                            style="text-decoration: none">Lihat detail</a></p>
+                    <p class="card-text"><a href="{{ route('kategori.index') }}"
+                            class="text-white text-decoration-none">Lihat detail</a></p>
                 </div>
             </div>
         </div>
@@ -57,8 +57,8 @@
                 <div class="card-body text-white">
                     <h1 class="card-title">{{ $total_produk }}</h1>
                     <h5 class="card-text">Produk</h5>
-                    <p class="card-text"><a href="{{ route('produk.index') }}" class="text-white"
-                            style="text-decoration: none">Lihat detail</a></p>
+                    <p class="card-text"><a href="{{ route('produk.index') }}" class="text-white text-decoration-none">Lihat
+                            detail</a></p>
                 </div>
             </div>
         </div>
@@ -67,8 +67,8 @@
                 <div class="card-body text-white">
                     <h1 class="card-title">{{ $total_supplier }}</h1>
                     <h5 class="card-text">Supplier</h5>
-                    <p class="card-text"><a href="{{ route('supplier.index') }}" class="text-white"
-                            style="text-decoration: none">Lihat detail</a></p>
+                    <p class="card-text"><a href="{{ route('supplier.index') }}"
+                            class="text-white text-decoration-none">Lihat detail</a></p>
                 </div>
             </div>
         </div>

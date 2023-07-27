@@ -6,7 +6,7 @@
         data-bs-target="#produkModal">Tambah data</button>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered nowrap" id="dataTable" style="width:100%">
                 <thead>
                     <tr>
                         <th>No.</th>
@@ -118,6 +118,7 @@
                 processing: true,
                 serverSide: true,
                 pageLength: 5,
+                responsive: true,
                 ajax: "{{ route('produk.index') }}",
                 dataType: 'json',
                 columns: [{

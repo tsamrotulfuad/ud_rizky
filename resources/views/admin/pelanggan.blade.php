@@ -1,8 +1,8 @@
 @extends('admin.app')
 
 @section('content')
-    <p class="h3 mt-3">List Kategori</p>
-    <button type="button" class="btn btn-primary mb-3 mt-3" data-bs-toggle="modal" data-bs-target="#kategoriModal">Tambah
+    <p class="h3 mt-3">List Pelanggan</p>
+    <button type="button" class="btn btn-primary mb-3 mt-3" data-bs-toggle="modal" data-bs-target="#pelangganModal">Tambah
         data</button>
     <div class="card-body">
         <div class="table-responsive">
@@ -10,9 +10,10 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Kategori</th>
-                        <th>Deskripsi</th>
-                        <th>Action</th>
+                        <th>Nama</th>
+                        <th>Telp</th>
+                        <th>Alamat</th>
+                        <th>Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,30 +24,35 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="kategoriModal" tabindex="-1" aria-labelledby="kategoriModalLabel" aria-hidden="true">
+    <div class="modal fade" id="pelangganModal" tabindex="-1" aria-labelledby="pelangganModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="addBtn">Tambah Kategori</h1>
+                    <h1 class="modal-title fs-5" id="addBtn">Tambah Pelanggan</h1>
                 </div>
                 <div class="modal-body">
-                    <form id="kategoriForm" name="kategoriForm">
+                    <form id="pelangganForm" name="pelangganForm">
                         <input type="hidden" name="id" id="id">
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Kategori</label>
+                            <label for="nama" class="form-label">Nama Pelanggan</label>
                             <input type="text" class="form-control" name="nama" id="nama"
                                 placeholder="Masukkan nama kategori">
                         </div>
                         <div class="mb-3">
-                            <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3"></textarea>
+                            <label for="telp" class="form-label">Telp</label>
+                            <input type="number" class="form-control" name="telp" id="telp"
+                                placeholder="Masukkan No. Telp">
                         </div>
+                        <div class="mb-3">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <textarea class="form-control" name="alamat" id="alamat" rows="3"></textarea>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="clodeBtn" data-bs-dismiss="modal">Keluar</button>
+                    <button type="button" class="btn btn-secondary" id="closeBtn" data-bs-dismiss="modal">Keluar</button>
                     <button type="button" class="btn btn-primary" id="saveBtn">Simpan</button>
                 </div>
-                </form>
             </div>
         </div>
     </div>
@@ -67,8 +73,7 @@
                 serverSide: true,
                 pageLength: 5,
                 responsive: true,
-                ajax: "{{ route('kategori.index') }}",
-                dataType: 'json',
+                ajax: "{{ route('pelanggan.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -81,20 +86,23 @@
                         name: 'nama'
                     },
                     {
-                        data: 'deskripsi',
-                        name: 'deskripsi'
+                        data: 'telp',
+                        name: 'telp'
+                    },
+                    {
+                        data: 'alamat',
+                        name: 'alamat'
                     },
                     {
                         data: 'action',
                         name: 'action',
-                        width: '225px',
                         orderable: false,
                         searchable: false
                     },
                 ],
             });
             // Reset Form when Close Button
-            $('#kategoriModal').on('hidden.bs.modal', function() {
+            $('#pelangganModal').on('hidden.bs.modal', function() {
                 $('#id').val('');
                 $(this).find('form').trigger('reset');
             });
@@ -103,13 +111,13 @@
                 e.preventDefault();
 
                 $.ajax({
-                    data: $('#kategoriForm').serialize(),
-                    url: "{{ route('kategori.store') }}",
+                    data: $('#pelangganForm').serialize(),
+                    url: "{{ route('pelanggan.store') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function(data) {
-                        $('#kategoriForm').trigger("reset");
-                        $('#kategoriModal').modal('hide');
+                        $('#pelangganForm').trigger("reset");
+                        $('#pelangganModal').modal('hide');
                         table.draw();
                     },
                     error: function(data) {
@@ -123,19 +131,21 @@
                 var id = $(this).data('id');
 
                 $.ajax({
-                    url: `/kategori/${id}`,
+                    url: `/pelanggan/${id}`,
                     type: "GET",
                     dataType: "json",
                     cache: false,
                     success: function(response) {
                         $('#id').val(response.data.id);
                         $('#nama').val(response.data.nama);
-                        $('#deskripsi').val(response.data.deskripsi);
+                        $('#telp').val(response.data.telp);
+                        $('#alamat').val(response.data.alamat);
 
-                        $('#kategoriModal').modal('show');
+                        $('#pelangganModal').modal('show');
                     }
                 })
             });
+            // Delete Data
             // Delete Data
             $('body').on('click', '#btn-delete', function() {
                 var id = $(this).data('id');
@@ -153,7 +163,7 @@
                     callback: function(result) {
                         if (result) {
                             $.ajax({
-                                url: `/kategori/${id}`,
+                                url: `/pelanggan/${id}`,
                                 type: "DELETE",
                                 dataType: "json",
                                 success: function(response) {

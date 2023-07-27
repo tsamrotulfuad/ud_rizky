@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SupplierController;
 
@@ -37,9 +38,7 @@ Route::get('kodeProduk', [ProdukController::class, 'kodeProduk'])->name('produk.
 Route::get('selectKategori', [ProdukController::class, 'kategori'])->name('produk.kategori');
 Route::get('selectSupplier', [ProdukController::class, 'supplier'])->name('produk.supplier');
 
+Route::resource('pelanggan', PelangganController::class);
 Route::resource('produk', ProdukController::class);
 Route::resource('kategori', KategoriController::class);
 Route::resource('supplier', SupplierController::class);
-
-
-

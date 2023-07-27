@@ -9,18 +9,9 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <style>
-        .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 60px;
-            /* tinggi dari footer */
-            background: #6cf;
-        }
-    </style>
 </head>
 
 <body>
@@ -43,10 +34,13 @@
                             <a class="nav-link text-white" href="{{ route('produk.index') }}">Produk</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('kategori.index') }}">Kategori</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('supplier.index') }}">Supplier</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ route('kategori.index') }}">Kategori</a>
+                            <a class="nav-link text-white" href="{{ route('pelanggan.index') }}">Pelanggan</a>
                         </li>
                     </ul>
                     <div class="d-lg-flex col-lg-3 justify-content-lg-end">
@@ -63,7 +57,7 @@
         </div>
         @yield('content')
     </main>
-    <footer class="footer mt-auto py-3 bg-body-secondary">
+    <footer class="footer mt-auto py-3 bg-body-secondary" style="position: fixed; bottom: 0; width: 100%; height: 60px">
         <p class="text-center text-body-secondary">&copy; 2023 Company, Inc</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -78,6 +72,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     @stack('script')
 </body>
 
