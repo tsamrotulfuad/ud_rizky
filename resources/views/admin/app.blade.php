@@ -42,6 +42,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ route('pelanggan.index') }}">Pelanggan</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Laporan</a>
+                        </li>
                     </ul>
                     <div class="d-lg-flex col-lg-3 justify-content-lg-end">
                         <button class="btn btn-primary">Masuk</button>
@@ -52,8 +55,8 @@
     </header>
     <main class="container flex-shrink-0">
         <div class="d-flex justify-content-between align-items-center">
-            <p class="h1 mt-5 mb-3">CV/UD/PT. UJI COBA</p>
-            <p class="h4 mt-5 mb-3">Selasa, 12 Desember 2023</p>
+            <p class="h1 mt-5 mb-3">UJI COBA</p>
+            <p class="h4 mt-5 mb-3">{{ \Carbon\Carbon::now()->isoFormat('dddd, D MMMM Y') }}</p>
         </div>
         @yield('content')
     </main>
