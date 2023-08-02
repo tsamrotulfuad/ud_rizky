@@ -28,9 +28,7 @@ Route::get('/login', function () {
 });
 
 //Route Kasir
-Route::get('/kasir', function () {
-    return view('kasir/app');
-});
+Route::resource('kasir', OrderController::class);
 
 //Route Admin
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
