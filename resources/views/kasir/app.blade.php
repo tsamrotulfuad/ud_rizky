@@ -37,8 +37,8 @@
     </header>
     <main class="container flex-shrink-0">
         <div class="d-flex justify-content-between align-items-center">
-            <p class="h4 mt-5 mb-3">Penjualan</p>
-            <p class="h4 mt-5 mb-3">{{ \Carbon\Carbon::now()->isoFormat('dddd, D MMMM Y') }}</p>
+            <p class="h4 mt-4 mb-4">Penjualan</p>
+            <p class="h4 mt-4 mb-4">{{ \Carbon\Carbon::now()->isoFormat('dddd, D MMMM Y') }}</p>
         </div>
         @yield('content')
     </main>
