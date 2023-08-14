@@ -3,14 +3,19 @@
 @section('content')
     <div class="row g-5">
         <div class="col-md-7 col-lg-8">
-            <div class="col-sm-12">
+            <div class="col-sm-12 mb-3">
                 <div class="card" style="width: auto;">
                     <div class="card-body">
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Cari Barang">
+                        <div class="d-flex">
+                            <input type="text" class="form-control g-3" id="exampleFormControlInput1"
+                                placeholder="Cari Barang">
+                            <button type="button" class="btn btn-primary">Primary</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 mt-3">
+            <div class="col-sm-12">
                 <div class="card" style="width: auto;">
                     <div class="card-body">
                         <table class="table table-borderless caption-top">
@@ -51,31 +56,24 @@
             <ul class="list-group mb-3">
                 <li class="list-group-item d-flex justify-content-between lh-sm">
                     <div>
-                        <h6 class="my-0">Product name</h6>
+                        <h6 class="my-0">Sub Total</h6>
                         <small class="text-body-secondary">Brief description</small>
                     </div>
                     <span class="text-body-secondary">$12</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-sm">
                     <div>
-                        <h6 class="my-0">Second product</h6>
+                        <h6 class="my-0">Diskon</h6>
                         <small class="text-body-secondary">Brief description</small>
                     </div>
                     <span class="text-body-secondary">$8</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-sm">
                     <div>
-                        <h6 class="my-0">Third item</h6>
+                        <h6 class="my-0">Total</h6>
                         <small class="text-body-secondary">Brief description</small>
                     </div>
                     <span class="text-body-secondary">$5</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-                    <div class="text-success">
-                        <h6 class="my-0">Promo code</h6>
-                        <small>EXAMPLECODE</small>
-                    </div>
-                    <span class="text-success">−$5</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total (USD)</span>
