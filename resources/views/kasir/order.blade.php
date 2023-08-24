@@ -9,11 +9,47 @@
                         <div class="row row-cols-2">
                             <div class="col">
                                 <input type="text" class="form-control" name="scanBarcode" id="scanBarcode"
-                                    aria-describedby="scanBarcode">
+                                    aria-describedby="scanBarcode" placeholder="Scan Barcode">
                             </div>
                             <div class="col">
-                                <button type="button" class="btn btn-primary">Primary</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#pilihBarang">Pilih Barang</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Pilih Barang-->
+            <div class="modal fade" id="pilihBarang" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">List Barang</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered nowrap" id="dataTable" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="5px">No.</th>
+                                            <th width="125px">Kode Barang</th>
+                                            <th>Nama Barang</th>
+                                            <th width="85px">Satuan</th>
+                                            <th width="85px">Stok</th>
+                                            <th width="150px">Opsi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
+                            <button type="button" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </div>
@@ -23,9 +59,10 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Nama Barang</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Jumlah</th>
+                            <th scope="col">Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,11 +71,13 @@
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>@mdo</td>
+                            <td>@mdo</td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td>Jacob</td>
                             <td>Thornton</td>
+                            <td>@fat</td>
                             <td>@fat</td>
                         </tr>
                     </tbody>
